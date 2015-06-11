@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title>Hello!</title>
+</head>
+ <script type="text/javascript">
+ number= [];
+ function board()
+    {
+      for(i=0;i<9;i++)
+      {
+        for(j=1;j<=10;j++)
+        {
+          document.getElementById(i).innerHTML+="<input type='button' style='height:50px;width:50px;'value="+(i*10+j)+" onclick='housie()'>"
+          number.push((i*10+j))
+        }
+        document.getElementById(i).innerHTML+="<div id="+(i+1)+"></div>"
+      }
+      //alert(number)
+    }
+
+    function housie()
+    {
+    if(number.length>0)
+    {
+      x=Math.floor(Math.random()*number.length)
+      y=number.splice(x,1)
+      t=0
+      //alert(y)
+      counter=setInterval(display,30)
+      for(i=0;i<document.frmHousie.elements.length;i++)
+      {
+        if(document.frmHousie.elements[i].value==y)
+        {
+          document.frmHousie.elements[i].style.background='#3CB371'
+        }
+      }
+    }
+    }
+
+    function display()
+    { t++
+      document.getElementById('num').innerHTML='Lucky \n'+y
+      document.getElementById('num').style.opacity=(t/100)
+      if(t>99)
+      clearInterval(counter)
+    }
+ </script>
+<body onload="board()" style="font:Verdana, Arial, Helvetica, sans-serif 30px;">
+<form name=frmHousie>
+<div style="margin-left:25% ;width: 500px;float: left;text-align: center">
+    <div  style="color:#3CB371; font-size:100px;font-family: Calibri;">Housie :)</div>
+   <div id="0" style="margin: auto">
+   </div>
+
+   <input type="button" value="Click Me!!" style="width: 80px;height: 50px;" onclick="housie()" />
+</div>
+<div id="num" style="float:left;color:#3CB371; font-size:100px;font-family: Calibri;margin-top: 20%;margin-left: 1%"></div>
+ </form>
+</body>
+
+</html>
